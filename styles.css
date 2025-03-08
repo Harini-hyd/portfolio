@@ -5,33 +5,56 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
     color: #333;
-    animation: fadeIn 1s ease-in-out;
+    overflow-x: hidden;
+    position: relative;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Background Animation */
+@keyframes moveStars {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    animation: moveStars 50s linear infinite;
+    z-index: -1;
+}
+
+/* Butterfly Animation */
+@keyframes butterfly {
+    0% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+    100% { transform: translateY(0) rotate(0); }
+}
+
+.butterfly {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 50px;
+    height: 50px;
+    background: url('https://clipart-library.com/images/8ixr65zxi.png') no-repeat center;
+    background-size: contain;
+    animation: butterfly 4s infinite ease-in-out;
 }
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: rgba(51, 51, 51, 0.8);
     color: white;
     padding: 20px;
     text-align: center;
-    animation: slideDown 1s ease-in-out;
-}
-
-@keyframes slideDown {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2.5em;
+    font-size: 1.5em;
+    border-bottom: 5px solid #ff6b6b;
 }
 
 nav ul {
@@ -42,20 +65,16 @@ nav ul {
     gap: 20px;
 }
 
-nav ul li {
-    display: inline;
-}
-
 nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 1.2em;
-    transition: 0.3s;
+    transition: color 0.3s ease-in-out;
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
-    color: #ffeb3b;
+    color: #ffdd57;
+    text-shadow: 0 0 10px rgba(255, 221, 87, 0.8);
 }
 
 /* Main Content */
@@ -64,57 +83,37 @@ main {
     margin: 20px auto;
     background: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 1.2s ease-in-out;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
 h1, h2, h3 {
-    color: #222;
+    color: #ff6b6b;
 }
 
 .projects mark {
-    background-color: #ffeb3b;
+    background-color: yellow;
     font-weight: bold;
-    padding: 2px 5px;
-    border-radius: 5px;
 }
 
 .skills ul, .contacts ul {
     list-style: none;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
 }
 
 .skills ul li, .contacts ul li {
-    background: #ff6f61;
-    color: white;
+    background: #ffdd57;
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease-in-out;
 }
 
 .skills ul li:hover, .contacts ul li:hover {
     transform: scale(1.1);
-}
-
-/* Button Styling */
-button {
-    background: #764ba2;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
-}
-
-button:hover {
-    background: #ff9a9e;
-    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 221, 87, 0.6);
 }
 
 /* Responsive Design */
